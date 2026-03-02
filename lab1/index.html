@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityBuilder Pro | Панель управління містом</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>CityBuilder <span>Pro</span></h2>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="#">📊 Дашборд</a></li>
+                    <li><a href="#">🗺️ Карта регіону</a></li>
+                    <li><a href="#">🏗️ Проєкти</a></li>
+                    <li><a href="#">📈 Економіка</a></li>
+                    <li><a href="#">👥 Населення</a></li>
+                    <li><a href="#">⚙️ Налаштування</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="header-search">
+                    <input type="text" placeholder="Пошук по об'єктах...">
+                </div>
+                <div class="header-info">
+                    <span class="status">Статус сервера: <strong>Онлайн</strong></span>
+                    <div class="user-profile">
+                        <span class="avatar">Мер</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                
+                <section class="panel resources-panel">
+                    <div class="panel-header">
+                        <h3>Ресурси міста</h3>
+                        <span class="badge">Оновлено щойно</span>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-title">Бюджет</span>
+                            <span class="stat-value text-success">$1,250,000</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-title">Вільні будівельники</span>
+                            <span class="stat-value">145 / 200</span>
+                        </div>
+                    </div>
+                    <ul class="materials-list">
+                        <li>
+                            <div class="material-info"><span>Бетон</span> <span>450 т</span></div>
+                            <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                        </li>
+                        <li>
+                            <div class="material-info"><span>Деревина</span> <span>820 куб.м</span></div>
+                            <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
+                        </li>
+                        <li>
+                            <div class="material-info"><span>Сталь</span> <span>120 т</span></div>
+                            <div class="progress-bar"><div class="progress" style="width: 15%; background: #e74c3c;"></div></div>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="panel construction-panel">
+                    <div class="panel-header">
+                        <h3>Центр будівництва</h3>
+                    </div>
+                    <form class="construction-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category">Категорія</label>
+                                <select id="category">
+                                    <option>Інфраструктура</option>
+                                    <option>Житловий фонд</option>
+                                    <option>Промисловість</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="object-type">Об'єкт</label>
+                                <select id="object-type">
+                                    <option>Багатоповерхівка (🏢)</option>
+                                    <option>Шосе (🛣️)</option>
+                                    <option>Завод (🏭)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="material-needed">Основний матеріал</label>
+                                <select id="material-needed">
+                                    <option>Бетон</option>
+                                    <option>Сталь</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="material-amount">Об'єм (одиниць)</label>
+                                <input type="number" id="material-amount" value="50" min="10">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="builders-needed">Призначити бригади (осіб)</label>
+                            <input type="range" id="builders-needed" min="1" max="50" value="15">
+                            <div class="range-labels">
+                                <span>1</span><span>25</span><span>50</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Затвердити проєкт</button>
+                    </form>
+                </section>
+
+                <section class="panel map-panel">
+                    <div class="panel-header">
+                        <h3>Моє місто (Сектор A-1)</h3>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="color-box grass"></span> Вільна зона</span>
+                            <span class="legend-item"><span class="color-box commercial"></span> Комерція</span>
+                            <span class="legend-item"><span class="color-box residential"></span> Житло</span>
+                        </div>
+                    </div>
+                    
+                    <div class="city-map-wrapper">
+                        <div class="city-grid-large">
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell residential">🏢</div><div class="cell residential">🏢</div><div class="cell road">🛣️</div><div class="cell industrial">🏭</div><div class="cell industrial">🏭</div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell residential">🏢</div><div class="cell residential">🏠</div><div class="cell road">🛣️</div><div class="cell industrial">🏭</div><div class="cell grass"></div>
+                            <div class="cell commercial">🏪</div><div class="cell commercial">🏦</div><div class="cell road inter">🛣️</div><div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road inter">🛣️</div><div class="cell grass"></div><div class="cell grass"></div>
+                            <div class="cell commercial">🏫</div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell park">🌳</div><div class="cell park">🌲</div><div class="cell road">🛣️</div><div class="cell residential">🏠</div><div class="cell residential">🏠</div>
+                            <div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road inter">🛣️</div><div class="cell park">⛲</div><div class="cell park">🌳</div><div class="cell road">🛣️</div><div class="cell residential">🏢</div><div class="cell residential">🏢</div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road inter">🛣️</div><div class="cell road">🛣️</div><div class="cell road">🛣️</div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell commercial">🏥</div><div class="cell grass"></div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell commercial">🏬</div><div class="cell grass"></div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
