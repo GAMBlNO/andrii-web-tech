@@ -1,0 +1,154 @@
+/* --- Глобальні Змінні --- */
+:root {
+    --bg-body: #f1f5f9;
+    --bg-sidebar: #0f172a;
+    --bg-panel: #ffffff;
+    
+    --text-main: #334155;
+    --text-light: #64748b;
+    --text-sidebar: #94a3b8;
+    
+    --accent-color: #2563eb;
+    --accent-hover: #1d4ed8;
+    --warning-color: #f59e0b;
+    --warning-hover: #d97706;
+    --success: #10b981;
+    --danger: #ef4444;
+    --border: #e2e8f0;
+
+    /* Зонування міста */
+    --zone-grass: #bef264;
+    --zone-road: #94a3b8;
+    --zone-residential: #7dd3fc;
+    --zone-commercial: #fca5a5;
+    --zone-industrial: #fcd34d;
+    --zone-park: #86efac;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); }
+
+/* --- Скролбар --- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-body); }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* --- Макет --- */
+.app-container { display: flex; height: 100vh; overflow: hidden; }
+
+/* --- Бічна панель --- */
+.sidebar { width: 280px; background-color: var(--bg-sidebar); color: var(--text-sidebar); display: flex; flex-direction: column; justify-content: space-between; }
+.logo { padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.logo h2 { color: #fff; font-size: 1.5rem; letter-spacing: 0.5px; }
+.logo span { color: var(--accent-color); }
+.main-nav ul { list-style: none; padding: 20px 0; }
+.main-nav li a { display: block; padding: 15px 24px; color: var(--text-sidebar); text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
+.main-nav li a:hover, .main-nav li.active a { background-color: rgba(255,255,255,0.05); color: #fff; border-left: 4px solid var(--accent-color); }
+.sidebar-footer { padding: 20px 24px; font-size: 0.8rem; color: #475569; border-top: 1px solid rgba(255,255,255,0.05); }
+
+/* --- Верхня панель --- */
+.main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+.topbar { background-color: var(--bg-panel); height: 75px; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.header-search input { padding: 10px 16px; border: 1px solid var(--border); border-radius: 20px; width: 300px; outline: none; background-color: var(--bg-body); transition: 0.2s; }
+.header-search input:focus { border-color: var(--accent-color); width: 350px; background-color: #fff; }
+.header-info { display: flex; align-items: center; gap: 24px; }
+.status strong { color: var(--success); }
+.notifications { position: relative; cursor: pointer; font-size: 1.2rem; }
+.badge-red { position: absolute; top: -5px; right: -10px; background-color: var(--danger); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 10px; font-weight: bold; }
+.user-profile { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 8px; transition: 0.2s; }
+.user-profile:hover { background-color: var(--bg-body); }
+.avatar { background-color: var(--accent-color); color: white; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; }
+.user-name { font-weight: 600; }
+
+/* --- Дашборд Сітка --- */
+.dashboard-grid { 
+    padding: 30px; 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: auto auto auto; 
+    gap: 24px; 
+}
+
+/* Спільні стилі панелей */
+.panel { background-color: var(--bg-panel); border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); border: 1px solid var(--border); }
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+.panel-header h3 { font-size: 1.1rem; font-weight: 600; color: #0f172a; }
+.badge { background-color: #e2e8f0; color: var(--text-main); padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+
+/* --- Віджет: Ресурси --- */
+.resources-panel { grid-column: 1 / 2; }
+.materials-list { list-style: none; }
+.materials-list li { margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 12px; }
+.materials-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.material-info { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; }
+.material-value { font-weight: 700; color: #0f172a; font-size: 1.1rem; }
+
+/* --- Віджет: Статистика --- */
+.stats-panel { grid-column: 2 / 3; }
+.city-stats-grid { display: flex; flex-direction: column; gap: 15px; }
+.stat-box { display: flex; align-items: center; gap: 15px; background-color: var(--bg-body); padding: 15px; border-radius: 8px; border: 1px solid var(--border); }
+.stat-icon { font-size: 2rem; }
+.stat-info { display: flex; flex-direction: column; }
+.stat-info span { font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
+.stat-info strong { font-size: 1.2rem; color: #0f172a; }
+
+/* --- Віджет: Модернізація --- */
+.construction-panel { grid-column: 1 / 3; }
+.instruction-text { color: var(--text-light); line-height: 1.6; margin-bottom: 15px; font-size: 0.95rem; }
+.upgrade-cost-box { background-color: #f8fafc; border: 1px solid #cbd5e1; border-left: 4px solid var(--warning-color); padding: 15px; border-radius: 0 8px 8px 0; margin-bottom: 20px; }
+.upgrade-cost-box ul { padding-left: 20px; margin-top: 8px; color: var(--text-light); font-size: 0.9rem; }
+.cost-val { font-weight: bold; color: var(--text-main); }
+.btn-primary { width: 100%; padding: 14px; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.btn-warning { background-color: var(--warning-color); }
+.btn-warning:hover { background-color: var(--warning-hover); transform: translateY(-2px); box-shadow: 0 6px 10px rgba(0,0,0,0.15); }
+.btn-warning:active { transform: translateY(0); }
+
+/* --- Віджет: Лог подій --- */
+.log-panel { grid-column: 1 / 3; max-height: 250px; overflow-y: auto; }
+.activity-log { list-style: none; font-size: 0.9rem; }
+.activity-log li { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
+.activity-log li::before { content: "➤"; color: var(--accent-color); }
+.log-time { color: var(--text-light); font-size: 0.8rem; min-width: 60px; }
+
+/* --- Віджет: Карта (CSS Grid) --- */
+.map-panel { grid-column: 3 / 4; grid-row: 1 / 5; display: flex; flex-direction: column; min-height: 600px; }
+.map-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-weight: 500; }
+.color-box { width: 14px; height: 14px; border-radius: 4px; display: inline-block; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); }
+.city-map-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; background-color: #e2e8f0; border: 1px solid var(--border); border-radius: 8px; padding: 20px; overflow: auto; margin-top: 15px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); }
+
+/* Сітка 8x8 */
+.city-grid-large { display: grid; grid-template-columns: repeat(8, 65px); grid-template-rows: repeat(8, 65px); gap: 5px; background-color: #94a3b8; padding: 10px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+/* Клітинки */
+.cell { border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); transition: all 0.15s ease; position: relative; }
+.cell:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 15px rgba(0,0,0,0.2); z-index: 5; border: 2px solid rgba(255,255,255,0.8); }
+
+/* Активна клітинка */
+.cell.selected { border: 3px solid #ef4444; transform: translateY(-5px) scale(1.1); z-index: 10; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.4); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+
+/* Зонування */
+.grass { background-color: var(--zone-grass); cursor: default; }
+.grass:hover { transform: none; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); border: none; z-index: 1; }
+.road { background-color: var(--zone-road); box-shadow: none; cursor: default; }
+.road:hover { transform: none; border: none; z-index: 1; }
+.road.inter { background-color: #64748b; }
+.residential { background-color: var(--zone-residential); }
+.commercial { background-color: var(--zone-commercial); cursor: default; }
+.commercial:hover { transform: none; border: none; z-index: 1; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); }
+.industrial { background-color: var(--zone-industrial); }
+.park { background-color: var(--zone-park); cursor: default; }
+.park:hover { transform: none; border: none; z-index: 1; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); }
+
+/* Покращені будівлі */
+.residential.upgraded { background-color: #0ea5e9; }
+.industrial.upgraded { background-color: #a855f7; }
+
+/* Адаптивність */
+@media (max-width: 1400px) {
+    .dashboard-grid { grid-template-columns: 1fr 1fr; }
+    .map-panel { grid-column: 1 / 3; grid-row: auto; min-height: 500px; }
+    .construction-panel, .log-panel { grid-column: 1 / 3; }
+}

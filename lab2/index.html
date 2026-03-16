@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityBuilder Pro | Панель управління містом</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>CityBuilder <span>Pro</span></h2>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="#">📊 Головний Дашборд</a></li>
+                    <li><a href="#">🗺️ Карта Секторів</a></li>
+                    <li><a href="#">🏗️ Будівельні Проєкти</a></li>
+                    <li><a href="#">📈 Економіка та Бюджет</a></li>
+                    <li><a href="#">👥 Населення</a></li>
+                    <li><a href="#">⚙️ Налаштування Симуляції</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Версія симулятора: 1.2.0</p>
+                <p>Лабораторна робота №2</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="header-search">
+                    <input type="text" placeholder="Пошук по базі даних міста...">
+                </div>
+                <div class="header-info">
+                    <span class="status">Статус сервера: <strong>Онлайн</strong></span>
+                    <div class="notifications">🔔 <span class="badge-red">3</span></div>
+                    <div class="user-profile">
+                        <span class="avatar">А</span>
+                        <span class="user-name">Мер Андрій</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                
+                <section class="panel resources-panel">
+                    <div class="panel-header">
+                        <h3>Склад ресурсів</h3>
+                        <span class="badge">Оновлюється автоматично</span>
+                    </div>
+                    <ul class="materials-list" id="resources-container">
+                        </ul>
+                </section>
+
+                <section class="panel stats-panel">
+                    <div class="panel-header">
+                        <h3>Показники міста</h3>
+                    </div>
+                    <div class="city-stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-icon">👥</span>
+                            <div class="stat-info">
+                                <span>Населення</span>
+                                <strong id="population-val">45,200</strong>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-icon">⚡</span>
+                            <div class="stat-info">
+                                <span>Енергія (МВт)</span>
+                                <strong id="energy-val">120 / 150</strong>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-icon">😊</span>
+                            <div class="stat-info">
+                                <span>Задоволеність</span>
+                                <strong>87%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel construction-panel">
+                    <div class="panel-header">
+                        <h3>Центр модернізації</h3>
+                    </div>
+                    <div class="form-group full-width">
+                        <p class="instruction-text">
+                            Натисніть на об'єкт на карті (🏠 Житло або 🏭 Завод), щоб проаналізувати його стан, а потім ініціюйте модернізацію.
+                        </p>
+                        
+                        <div class="upgrade-cost-box">
+                            <strong>Кошторис покращення:</strong>
+                            <ul>
+                                <li>Фінансування: <span class="cost-val">$50,000</span></li>
+                                <li>Будматеріали: <span class="cost-val">100 т бетону</span></li>
+                            </ul>
+                        </div>
+
+                        <button id="upgrade-btn" class="btn-primary btn-warning">
+                            Почати модернізацію (🌟)
+                        </button>
+                    </div>
+                </section>
+
+                <section class="panel log-panel">
+                    <div class="panel-header">
+                        <h3>Журнал подій</h3>
+                    </div>
+                    <ul class="activity-log" id="activity-log">
+                        <li><em>Систему ініціалізовано. Місто готове до управління.</em></li>
+                    </ul>
+                </section>
+
+                <section class="panel map-panel">
+                    <div class="panel-header">
+                        <h3>Карта Сектору A-1</h3>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="color-box grass"></span> Вільна зона</span>
+                            <span class="legend-item"><span class="color-box residential"></span> Житло</span>
+                            <span class="legend-item"><span class="color-box industrial"></span> Промисловість</span>
+                            <span class="legend-item"><span class="color-box commercial"></span> Комерція</span>
+                        </div>
+                    </div>
+                    
+                    <div class="city-map-wrapper">
+                        <div class="city-grid-large">
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell residential" data-type="house">🏠</div><div class="cell residential" data-type="house">🏠</div><div class="cell road">🛣️</div><div class="cell industrial" data-type="factory">🏭</div><div class="cell industrial" data-type="factory">🏭</div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell residential" data-type="house">🏠</div><div class="cell residential" data-type="house">🏠</div><div class="cell road">🛣️</div><div class="cell industrial" data-type="factory">🏭</div><div class="cell grass"></div>
+                            <div class="cell commercial">🏪</div><div class="cell commercial">🏦</div><div class="cell road inter">🛣️</div><div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road inter">🛣️</div><div class="cell grass"></div><div class="cell grass"></div>
+                            <div class="cell commercial">🏫</div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell park">🌳</div><div class="cell park">🌲</div><div class="cell road">🛣️</div><div class="cell residential" data-type="house">🏠</div><div class="cell residential" data-type="house">🏠</div>
+                            <div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road inter">🛣️</div><div class="cell park">⛲</div><div class="cell park">🌳</div><div class="cell road">🛣️</div><div class="cell residential" data-type="house">🏠</div><div class="cell residential" data-type="house">🏠</div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road">🛣️</div><div class="cell road inter">🛣️</div><div class="cell road">🛣️</div><div class="cell road">🛣️</div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell commercial">🏥</div><div class="cell grass"></div>
+                            <div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell grass"></div><div class="cell road">🛣️</div><div class="cell commercial">🏬</div><div class="cell grass"></div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
