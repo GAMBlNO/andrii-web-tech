@@ -1,0 +1,91 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f1f5f9; color: #334155; }
+
+/* Макет */
+.app-container { display: flex; height: 100vh; }
+.sidebar { width: 250px; background-color: #0f172a; color: white; padding: 20px; }
+.logo h2 { margin-bottom: 30px; font-size: 1.5rem; }
+.logo span { color: #3b82f6; }
+.main-nav ul { list-style: none; }
+.main-nav li { margin-bottom: 10px; }
+.main-nav a { display: block; padding: 12px; color: #cbd5e1; text-decoration: none; border-radius: 6px; transition: 0.2s; }
+.main-nav a:hover, .active-link { background-color: #1e293b; color: white; border-left: 4px solid #3b82f6; }
+
+/* Головна область */
+.main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+.topbar { background: white; padding: 20px 30px; border-bottom: 1px solid #e2e8f0; }
+.content-wrapper { padding: 30px; }
+.panel { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+/* Дашборд */
+.dashboard-grid { display: flex; gap: 20px; }
+.widget-card { flex: 1; }
+.widget-card h3 { color: #64748b; margin-bottom: 10px; font-size: 1rem; }
+.value { font-size: 2rem; font-weight: bold; margin-bottom: 5px; }
+.text-success { color: #10b981; }
+.subtitle { font-size: 0.85rem; color: #94a3b8; }
+.progress-bar-bg { background-color: #e2e8f0; height: 10px; border-radius: 5px; overflow: hidden; margin: 10px 0; }
+.progress-bar-fill { background-color: #3b82f6; height: 100%; transition: width 0.5s ease; }
+
+/* Сторінка "Моє місто" */
+.my-city-layout { display: flex; gap: 20px; align-items: flex-start; }
+.map-panel { flex: 1; }
+.catalog-panel { flex: 1.5; }
+
+/* Карта (Лаба 2) */
+.city-grid-react { display: grid; grid-template-columns: repeat(4, 70px); grid-template-rows: repeat(2, 70px); gap: 5px; background: #cbd5e1; padding: 10px; border-radius: 8px; margin: 20px 0; justify-content: center;}
+.cell { border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; transition: 0.2s; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); }
+.cell:hover { transform: translateY(-4px); border: 2px solid white; }
+.cell.selected { border: 3px solid #ef4444; transform: translateY(-4px) scale(1.1); box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4); }
+
+.grass { background: #bef264; cursor: default; }
+.road { background: #94a3b8; cursor: default; font-size: 1.5rem; }
+.park { background: #86efac; cursor: default;}
+.residential { background: #7dd3fc; }
+.industrial { background: #fcd34d; }
+.upgraded { background: #a855f7 !important; }
+.residential.upgraded { background: #0ea5e9 !important; }
+
+/* Центр будівництва */
+.construction-center { padding-top: 20px; border-top: 1px dashed #cbd5e1; }
+.construction-center p { margin-bottom: 15px; color: #64748b; font-size: 0.9rem; }
+.btn-primary { width: 100%; padding: 12px; background: #f59e0b; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.btn-primary:hover { background: #d97706; transform: translateY(-2px); }
+
+/* Фільтрація (Вимога 2) */
+.filters { display: flex; gap: 10px; margin: 20px 0; }
+.filter-btn { padding: 8px 16px; border: 1px solid #cbd5e1; background: white; border-radius: 20px; cursor: pointer; font-weight: 500; transition: 0.2s; }
+.filter-btn:hover { background: #f8fafc; }
+.filter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+
+/* Картки об'єктів */
+.catalog-grid { display: flex; flex-direction: column; gap: 15px; }
+.building-card { display: flex; align-items: center; gap: 15px; padding: 15px; border: 1px solid #e2e8f0; border-radius: 8px; }
+.b-icon { font-size: 2.5rem; background: #f8fafc; padding: 10px; border-radius: 8px; }
+.b-info h4 { margin-bottom: 5px; color: #0f172a; }
+.b-info p { font-size: 0.85rem; color: #64748b; }
+
+/* Карта (Лаба 2) - Оновлено до 7х7 */
+.city-grid-react { 
+  display: grid; 
+  grid-template-columns: repeat(7, 60px); 
+  grid-template-rows: repeat(7, 60px); 
+  gap: 5px; 
+  background: #cbd5e1; 
+  padding: 10px; 
+  border-radius: 8px; 
+  margin: 20px 0; 
+  justify-content: center;
+}
+
+/* Трохи зменшуємо шрифт у клітинках через їх менший розмір */
+.cell { 
+  border-radius: 6px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 1.6rem; /* Змінено з 2rem */
+  cursor: pointer; 
+  transition: 0.2s; 
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); 
+}
