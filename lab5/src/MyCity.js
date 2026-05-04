@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { auth } from './firebase';
 
 const BuildingCard = ({ building }) => (
   <div className="building-card">
@@ -26,7 +25,7 @@ export default function MyCity({ resources, satisfaction, mapBuildings, syncWith
 
   const filteredCatalog = filter === 'Всі' ? catalog : catalog.filter(b => b.category === filter);
 
-  const upgradeMapBuilding = async () => {
+  const upgradeMapBuilding = () => {
     if (!selectedBuildingId) {
        alert("Спочатку виберіть об'єкт на карті!");
        return;
@@ -50,48 +49,11 @@ export default function MyCity({ resources, satisfaction, mapBuildings, syncWith
         b.id === selectedBuildingId ? { ...b, icon: b.upgradedIcon, upgraded: true } : b
       );
       
-      // ВІДПРАВЛЯЄМО ЗАПИТ НА НАШ СЕРВЕР (Node.js)
-      try {
-        // Щоб не передавати uid через купу компонентів, візьмемо його з поточного юзера Firebase
-        //const { getAuth } = require("firebase/auth");
-        //const auth = getAuth();
-        const currentUser = auth.currentUser;
-
-        if (!currentUser) {
-            alert("Помилка: Ви не авторизовані!");
-            return;
-        }
-
-        // Робимо POST-запит на локальний бекенд[cite: 2]
-        const response = await fetch("https://city-backend-4kix.onrender.com", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                uid: currentUser.uid,
-                mapBuildings: newBuildings
-            })
-        });
-
-        const data = await response.json();
-
-        // Перевіряємо відповідь сервера. Якщо статус не ОК (наприклад, 429 - занадто часто)
-        if (!response.ok) {
-            alert("🚨 Сервер відхилив запит:\n" + data.error);
-            return; // Зупиняємо виконання, ресурси НЕ списуються!
-        }
-
-        // Якщо сервер відповів успіхом (200 OK), оновлюємо візуальний стан та ресурси
-        syncWithDB(newResources, newSatisfaction, newBuildings);
-        setSelectedBuildingId(null);
-        alert("✅ " + data.message + `\nМодернізовано: ${target.name}`);
-
-      } catch (error) {
-        console.error("Помилка з'єднання:", error);
-        alert("❌ Не вдалося з'єднатися з сервером. Переконайтеся, що Node.js сервер запущено.");
-      }
-
+      // Зберігаємо змінений стан у базу даних
+      syncWithDB(newResources, newSatisfaction, newBuildings);
+      
+      setSelectedBuildingId(null);
+      alert(`Успішно модернізовано: ${target.name}! Зміни збережено в хмарі.`);
     } else {
       alert(`Недостатньо ресурсів! Потрібно $${target.costBudget.toLocaleString()} та ${target.costConcrete} т бетону.`);
     }
